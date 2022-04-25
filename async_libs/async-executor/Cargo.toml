@@ -1,0 +1,32 @@
+[package]
+name = "async-executor"
+# When publishing a new version:
+# - Update CHANGELOG.md
+# - Create "v1.x.y" git tag
+version = "1.4.1"
+authors = ["Stjepan Glavina <stjepang@gmail.com>"]
+edition = "2018"
+rust-version = "1.40"
+description = "Async executor"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/smol-rs/async-executor"
+homepage = "https://github.com/smol-rs/async-executor"
+documentation = "https://docs.rs/async-executor"
+keywords = ["asynchronous", "executor", "single", "multi", "spawn"]
+categories = ["asynchronous", "concurrency"]
+exclude = ["/.*"]
+
+[dependencies]
+async-task = {path="../async-task"}
+concurrent-queue = {path="../concurrent-queue"}
+fastrand = "1.3.4"
+futures-lite = "1.11.0"
+once_cell = "1.4.1"
+slab = "0.4.4"
+log = "0.4.11"
+
+[dev-dependencies]
+async-channel = "1.4.1"
+async-io = "1.1.9"
+easy-parallel = "3.1.0"
+num_cpus = "1.13.0"

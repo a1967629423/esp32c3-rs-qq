@@ -1,0 +1,10 @@
+/.vscode
+/.espressif
+/.embuild
+/target
+/Cargo.lock
+**/*.rs.bk
+app.config.out
+device.out
+app.json
+device.json

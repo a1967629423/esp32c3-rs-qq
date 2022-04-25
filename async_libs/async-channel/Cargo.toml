@@ -1,0 +1,27 @@
+[package]
+name = "async-channel"
+# When publishing a new version:
+# - Update CHANGELOG.md
+# - Create "v1.x.y" git tag
+version = "1.6.1"
+authors = ["Stjepan Glavina <stjepang@gmail.com>"]
+edition = "2018"
+rust-version = "1.38"
+description = "Async multi-producer multi-consumer channel"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/smol-rs/async-channel"
+homepage = "https://github.com/smol-rs/async-channel"
+documentation = "https://docs.rs/async-channel"
+keywords = ["mpmc", "mpsc", "spmc", "chan", "futures"]
+categories = ["asynchronous", "concurrency"]
+exclude = ["/.*"]
+
+[dependencies]
+concurrent-queue = {path="../concurrent-queue"}
+event-listener = "2.4.0"
+futures-core = "0.3.5"
+log = "0.4.11"
+[dev-dependencies]
+blocking = "1"
+easy-parallel = "3.1.0"
+futures-lite = "1.11.0"

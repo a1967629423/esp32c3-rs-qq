@@ -1,0 +1,42 @@
+[package]
+name = "nrq-engine"
+version = "0.1.0"
+edition = "2021"
+
+
+
+[dependencies]
+bytes = {version = "1", default-features = false }
+rand = {version = "0.8", default-features = false}
+chrono = {version = "0.4.19", default-features = false}
+p256 = {version = "0.10", default-features = false,features = ["arithmetic","ecdsa","pkcs8","ecdh"]}
+serde = {version = "1",default-features = false, features =["derive"]}
+md5 = {version = "0.7",default-features = false}
+byteorder = {version= "1",default-features = false}
+generic-array = {version = "0.14.5",default-features = false}
+# flate2
+miniz_oxide = {version = "0.5.1"}
+
+thiserror = "1" #macro
+derivative = {version = "2",features = ["use_core"]} #macro
+lazy_static = "1"
+core-error = "0.0.0"
+once_cell = {version = "1.9.0",default-features = false}
+no-std-net = "0.6.0"
+genio = {version = "0.2.1",default-features = false}
+
+
+# patch due to permission of abnormal utf8
+prost = {git = "https://gitee.com/ttm0/prost",version = "~0.9",default-features = false, features=["prost-derive"]}
+prost-types = {git = "https://gitee.com/ttm0/prost", version = "~0.9",default-features = false}
+
+# TODO: HashMap只有在alloc的情况下才能使用
+jcers = { version = "0.1",git="https://gitee.com/ttm0/jcers",default-features = false, features = ["derive"] }
+
+[build-dependencies]
+prost-build = { version = "0.9" }
+
+[features]
+default = ["alloc"]
+std = ["jcers/std"]
+alloc = ["rand/alloc","chrono/alloc","serde/alloc","once_cell/alloc"]

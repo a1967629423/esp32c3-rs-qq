@@ -1,0 +1,25 @@
+[package]
+name = "concurrent-queue"
+# When publishing a new version:
+# - Update CHANGELOG.md
+# - Create "v1.x.y" git tag
+version = "1.2.2"
+authors = ["Stjepan Glavina <stjepang@gmail.com>"]
+edition = "2018"
+rust-version = "1.38"
+description = "Concurrent multi-producer multi-consumer queue"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/smol-rs/concurrent-queue"
+homepage = "https://github.com/smol-rs/concurrent-queue"
+documentation = "https://docs.rs/concurrent-queue"
+keywords = ["channel", "mpmc", "spsc", "spmc", "mpsc"]
+categories = ["concurrency"]
+exclude = ["/.*"]
+
+[dependencies]
+cache-padded = "1.1.1"
+log = "0.4.11"
+
+[dev-dependencies]
+easy-parallel = "3.1.0"
+fastrand = "1.3.3"
