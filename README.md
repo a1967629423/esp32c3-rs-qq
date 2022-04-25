@@ -2,7 +2,9 @@
 
 ## 项目配置
 
-在根目录创建app.json，结构如下
+在根目录创建app.json和device.json，结构分别如下
+
+### app.json
 
 ```json
 {
@@ -25,6 +27,49 @@
       "send_topic": "qq/send"
     }
   }
+```
+
+### device.json
+
+```json
+{
+  "display": "GMC.214688.001",
+  "product": "iarim",
+  "device": "sagit",
+  "board": "eomam",
+  "model": "MI 6",
+  "finger_print": "xiaomi/iarim/sagit:10/eomam.200122.001/9285333:user/release-keys",
+  "boot_id": "6fc5a573-d976-013c-20b4-4c00b3a199e1",
+  "proc_version": "Linux 5.4.0-54-generic-9AmjXwjq (android-build@google.com)",
+  "imei": "259136341828576",
+  "brand": "Xiaomi",
+  "bootloader": "U-boot",
+  "base_band": "",
+  "version": {
+    "incremental": "5891938",
+    "release": "10",
+    "codename": "REL",
+    "sdk": 29
+  },
+  "sim_info": "T-Mobile",
+  "os_type": "android",
+  "mac_address": "00:50:56:C0:00:08",
+  "ip_address": [
+    10,
+    0,
+    1,
+    3
+  ],
+  "wifi_bssid": "00:50:56:C0:00:08",
+  "wifi_ssid": "<unknown ssid>",
+  "imsi_md5": [
+    160, 148, 68, 243, 1, 2, 44, 31, 87, 226, 130, 80, 163, 39, 126, 140
+  ],
+  "android_id": "d8d603f0a7f4d8d2",
+  "apn": "wifi",
+  "vendor_name": "MIUI",
+  "vendor_os_name": "gmc"
+}
 ```
 
 如未创建在开启编译后会自动生成
