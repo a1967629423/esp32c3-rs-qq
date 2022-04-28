@@ -150,11 +150,24 @@ fn main() -> Result<()> {
     #[allow(clippy::redundant_clone)]
     #[cfg(not(feature = "qemu"))]
     #[allow(unused_mut)]
-    let mut wifi = wifi(
-        netif_stack.clone(),
-        sys_loop_stack.clone(),
-        default_nvs.clone(),
-    )?;
+    let mut wifi = match wifi(
+            netif_stack.clone(),
+            sys_loop_stack.clone(),
+            default_nvs.clone(),
+        ) {
+        Ok(o) => {o},
+        Err(e) => {
+            log::error!("{:?}",e);
+            unsafe {
+                esp_idf_sys::esp_wifi_disconnect();
+                esp_idf_sys::esp_wifi_stop();
+                esp_idf_sys::esp_wifi_deinit();
+                esp_idf_sys::esp_restart();
+                
+            }
+            panic!("unreachable");
+        },
+    };
 
     main_app_async().ok();
 
@@ -425,6 +438,7 @@ fn wifi(
         None
     };
 
+
     // 不要开启AP，当前版本AP设置定时器时可能会导致崩溃
     wifi.set_configuration(&Configuration::Client(ClientConfiguration {
         ssid: APP_CONFIG.wifi.ssid.to_string(),
@@ -434,8 +448,12 @@ fn wifi(
     }))?;
 
     info!("Wifi configuration set, about to get status");
-
-    wifi.wait_status_with_timeout(Duration::from_secs(20), |status| !status.is_transitional())
+    // 解决一下esp重启后下方的with_timeout可能不工作的问题
+    thread::sleep(Duration::from_secs(5));
+    wifi.wait_status_with_timeout(Duration::from_secs(60), |status| matches!(status,Status(
+        ClientStatus::Started(ClientConnectionStatus::Connected(ClientIpStatus::Done(_))),
+        ApStatus::Stopped,
+    )))
         .map_err(|e| anyhow::anyhow!("Unexpected Wifi status: {:?}", e))?;
 
     let status = wifi.get_status();
@@ -446,7 +464,6 @@ fn wifi(
     ) = status
     {
         info!("Wifi connected");
-
         // ping(&ip_settings)?;
     } else {
         bail!("Unexpected Wifi status: {:?}", status);

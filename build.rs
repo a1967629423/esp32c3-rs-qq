@@ -6,6 +6,8 @@ use embuild::{
     cargo, symgen,
 };
 fn main() -> anyhow::Result<()> {
+    println!("cargo:rerun-if-changed=app.json");
+    println!("cargo:rerun-if-changed=device.json");
     build_config()?;
     // Necessary because of this issue: https://github.com/rust-lang/cargo/issues/9641
     LinkArgs::output_propagated("ESP_IDF")?;
