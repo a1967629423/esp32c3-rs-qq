@@ -18,10 +18,10 @@ smol = { git = "https://github.com/esp-rs-compat/smol" }
 polling = { git = "https://github.com/esp-rs-compat/polling" }
 socket2 = { git = "https://github.com/esp-rs-compat/socket2" }
 getrandom = { version = "0.2", git = "https://github.com/esp-rs-compat/getrandom.git" }
-prost = { git = "https://gitee.com/ttm0/prost" }
-prost-types = { git = "https://gitee.com/ttm0/prost" }
-jcers = {git = "https://gitee.com/ttm0/jcers"}
-jcers_proc = {git = "https://gitee.com/ttm0/jcers"}
+prost = { git = "https://github.com/a1967629423/prost.git" }
+prost-types = { git = "https://github.com/a1967629423/prost.git" }
+jcers = {git = "https://github.com/a1967629423/jcers.git"}
+jcers_proc = {git = "https://github.com/a1967629423/jcers.git"}
 
 #getrandom1 = { version = "0.1", git = "https://github.com/esp-rs-compat/getrandom.git", package = "getrandom", branch = "0.1" }
 
@@ -95,6 +95,7 @@ parking = {path="async_libs/parking"}
 broadcaster = {version="1.0.0",default-features = false}
 once_cell = "1.4.1"
 serde={version="1",default-features = false,features=["derive","alloc"]}
+bytes = "1"
 [build-dependencies]
 embuild = "0.28"
 anyhow = "1"

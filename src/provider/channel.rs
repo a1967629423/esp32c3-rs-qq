@@ -12,7 +12,7 @@ pub struct MySender<T: 'static + Send + Clone>(Sender<T>,Receiver<T>);
 #[derive(Clone)]
 pub struct MyReceiver<T: 'static + Send + Clone>(Receiver<T>);
 
-impl<T: Send + Clone> TReceiver<T> for MyReceiver<T> {
+impl<T:'static + Send + Clone> TReceiver<T> for MyReceiver<T> {
     type Error = ();
 
     type RecvFuture<'a>  = impl Future<Output = Result<T,Self::Error>> + futures::future::FusedFuture + Send + 'a where Self: 'a;
